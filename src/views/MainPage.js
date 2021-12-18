@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  Row,
-  Col,
-  Button,
-  Input,
-  Space,
-  List,
-  Skeleton,
-  Select,
-  Table,
-} from "antd";
+import { Row, Col, Button, Input, Table } from "antd";
 import moment from "moment";
 import ModalComponent from "../components/modal";
 import "../App.css";
-import { SearchOutlined } from "@ant-design/icons";
 
 const MainPage = () => {
   const [todo, setTodo] = useState([]);
@@ -37,35 +26,6 @@ const MainPage = () => {
 
   const deleteItem = (key) => {
     setTodo(todo.filter((item) => item.key !== key));
-  };
-
-  let sorted = [];
-  const sortList = (type) => {
-    if (type === "Ascending") {
-      sorted = dataTodo.sort((a, b) => {
-        let dateA = a.date;
-        let dateB = b.date;
-        if (dateA < dateB) {
-          return -1;
-        }
-        if (dateA > dateB) {
-          return 1;
-        }
-        return 0;
-      });
-    } else if (type === "Descending") {
-      sorted = dataTodo.sort((a, b) => {
-        let dateA = a.date;
-        let dateB = b.date;
-        if (dateA > dateB) {
-          return -1;
-        }
-        if (dateA < dateB) {
-          return 1;
-        }
-        return 0;
-      });
-    }
   };
 
   useEffect(() => {
@@ -161,46 +121,11 @@ const MainPage = () => {
               setDataTodo(filteredData);
             }}
           />
-          {/* <Select
-            defaultValue="Sort By"
-            bordered={false}
-            style={{ width: 120 }}
-            onChange={sortList}
-          >
-            <Select.Option value="Sort By">Sort By</Select.Option>
-            <Select.Option value="Ascending">Ascending</Select.Option>
-            <Select.Option value="Descending">Descending</Select.Option>
-          </Select> */}
           <Table
             dataSource={dataTodo}
             columns={columns}
             rowSelection={"checkbox"}
           />
-          {/* <List
-            className="demo-loadmore-list"
-            itemLayout="horizontal"
-            dataSource={dataTodo}
-            renderItem={(item) => (
-              <List.Item
-                actions={[
-                  <a onClick={() => deleteItem(item.key)}>Delete</a>,
-
-                  <a onClick={() => showModal("Edit", item.key)}>Edit</a>,
-                ]}
-              >
-                <Skeleton avatar title={false} loading={item.loading} active>
-                  <List.Item.Meta
-                    title={
-                      <a onClick={() => showModal("Detail", item.key)}>
-                        {item.title}
-                      </a>
-                    }
-                    description={item.date}
-                  />
-                </Skeleton>
-              </List.Item>
-            )}
-          /> */}
         </Col>
       </Row>
     </>

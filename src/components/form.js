@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-
+import "../App.css";
 import { Form, Input, DatePicker, Button } from "antd";
 
 const FormTemplate = (props) => {
@@ -56,7 +56,7 @@ const FormTemplate = (props) => {
         <Input.TextArea />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" className="margin">
           Submit
         </Button>
         <Button htmlType="button" onClick={() => onReset()}>
